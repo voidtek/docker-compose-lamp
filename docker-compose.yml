@@ -3,7 +3,7 @@ php:
   ports :
    - "80:80"
   volumes:
-   - .:/var/www/html/
+   - web:/var/www/html/
   links:
    - database
 
@@ -31,4 +31,4 @@ composer:
   image: composer/composer:php5
   command: install
   volumes:
-    - .:/app
+    - web:/app
