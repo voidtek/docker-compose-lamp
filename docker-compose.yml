@@ -8,14 +8,15 @@ php:
    - database
 
 phpmyadmin:
-   image: corbinu/docker-phpmyadmin
+   image: phpmyadmin/phpmyadmin
    ports :
     - "8080:80"
    environment:
+    - MYSQL_ROOT_PASSWORD=password
     - MYSQL_USERNAME=root
     - MYSQL_PASSWORD=password
    links:
-    - database:mysql
+    - database:db
 
 database:
   image: mysql:5.5
