@@ -10,5 +10,6 @@ before_script:
 script:
   - docker-compose build
   - docker-compose up -d
+  - SLEEP 60
   - docker-compose stop
   - docker-compose kill
