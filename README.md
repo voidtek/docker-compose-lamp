@@ -5,11 +5,13 @@ Lamp with docker-compose
 
 This repo includes:
 - php
-- mysql
+- maria_db
 - phpmysql
 - composer
 
-# Installation
+# Commands
 
-docker-compose build
-docker-compose up
+- docker-compose build
+- docker-compose up -d
+- docker-compose stop
+- docker-compose kill
