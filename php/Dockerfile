@@ -1,13 +1,11 @@
-FROM php:5.6-apache
+FROM php:7.0-apache
 
-# Install PDO MySQL driver
-# See https://github.com/docker-library/php/issues/62
-RUN docker-php-ext-install pdo mysql
-RUN docker-php-ext-install pdo mysqli
-
-# Workaround for write permission on write to MacOS X volumes
-# See https://github.com/boot2docker/boot2docker/pull/534
-RUN usermod -u 1000 www-data
-
-# Enable Apache mod_rewrite
 RUN a2enmod rewrite
+
+# install the PHP extensions we need
+RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev libpq-dev \
+  && rm -rf /var/lib/apt/lists/* \
+  && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
+  && docker-php-ext-install gd mbstring pdo pdo_mysql pdo_pgsql zip
+
+WORKDIR /var/www/html
